@@ -19,19 +19,28 @@
     <nav class="navbar navbar-light bg-light">
         <div class="container-fluid">
           <span class="navbar-brand">Navbar</span>
-          <button class="navbar-toggler" type="button">
+          <button class="navbar-toggler" id = "navbarBtn" type="button">
             <span class="navbar-toggler-icon"></span>
           </button>
         </div>
     </nav>
 
-    <ul class="list-group show">
+    <ul class="list-group">
         <li class="list-group-item">An item</li>
         <li class="list-group-item">A second item</li>
         <li class="list-group-item">A third item</li>
         <li class="list-group-item">A fourth item</li>
         <li class="list-group-item">And a fifth one</li>
     </ul>
+
+    <script>
+        // 클래스는 요소가 상당히 많기 때문에 반드시 [0] 같이 인덱싱을 해서 요소를 찾도록
+        document.getElementsByClassName('navbar-toggler')[0].addEventListener('click', function() {
+            document.getElementsByClassName('list-group')[0].classList.toggle('show')
+            // toggle 은 있으면 제거를 하고 없으면 붙여주는 용도이다.
+            // classList에 show라는 요소가 있으면 제거, 없으면 붙이기.
+        })
+    </script>
 
     <script 
     src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
