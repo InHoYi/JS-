@@ -9,17 +9,23 @@
 <body>
 
     <div class = "alert-box" id = "alertBox"> 
-        알림창
-        <button onclick = "controlBoard('none')"> 닫기 </button>
+        <p id = "alertBoxMessage"> 알림창 </p>
+        <button onclick = "controlBoard('none');"> 닫기 </button>
     </div>
     
-    <button onclick = "controlBoard('block')"> 열기 </button>
+    <button onclick = "controlBoard('block'); showMessage('아이디를 입력해주세요');"> 열기 </button>
+    <button onclick = "controlBoard('block'); showMessage('비번을 입력해주세요');"> 버튼2 </button>
     
     <script>
+
         function controlBoard(mode) {
-            
             document.getElementById('alertBox').style.display = mode;
         }
+
+        function showMessage(aMessage) {
+            document.getElementById('alertBoxMessage').innerHTML = aMessage;
+        }
+
     </script>
 
 </body>
