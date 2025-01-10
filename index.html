@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel = "stylesheet" href = "main.css">
     <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <body>
 
@@ -21,6 +22,8 @@
         document.getElementById('alertBoxCloseBtn').addEventListener('click', function() {
             controlBoard('none');
         });
+        // 이벤트란 사용자가 웹사이트에서 상호작용하는 행위. 
+        // 'click'을 하면 addEventListener가 클릭을 하는지 안 하는지 관찰함.
 
         function controlBoard(mode) {
             document.getElementById('alertBox').style.display = mode;
@@ -31,6 +34,6 @@
         }
 
     </script>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
