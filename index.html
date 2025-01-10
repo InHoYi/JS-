@@ -7,8 +7,21 @@
     <title>Document</title>
 </head>
 <body>
-    <div class = "alert-box" id = "alertBox"> 알림창임 </div>
-    <button onclick = "document.getElementById('alertBox').style.display = 'block';"> 열기 </button>
-    <button onclick = "document.getElementById('alertBox').style.display = 'none';"> 닫기 </button>
+    <div class = "alert-box" id = "alertBox"> 
+        알림창
+        <button onclick = "closeBoard()"> 닫기 </button>
+    </div>
+    
+    <button onclick = "openBoard()"> 열기 </button>
+    
+    <script>
+        function openBoard() {
+            document.getElementById('alertBox').style.display = 'block';
+        }
+        
+        function closeBoard() {
+            document.getElementById('alertBox').style.display = 'none';
+        } 
+    </script>
 </body>
 </html>
