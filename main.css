@@ -6,3 +6,7 @@
     display : none; 
 }
 /* display : none; 으로 하면 안 보임. block으로 하면 보임. */
+
+.list-group {
+    display : none; 
+}
