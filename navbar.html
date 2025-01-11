@@ -34,10 +34,15 @@
     </ul>
 
     <script>
+
+      document.querySelector('.list-group')
+      // querySelector 는 무조건 맨 위에 있는 것만 가지고 오고, querySelectorAll 을 쓰면 해당하는 모든 클래스/아이디를 리스트 형태로 반환해준다.
+      // .list-group 으로 해야지 클래스가 선택되고, . 대신 # 을 붙이면 id 를 고를 수 있다.
+
+      document.querySelector('.navbar-toggler').addEventListener('click', function() {
         // 클래스는 요소가 상당히 많기 때문에 반드시 [0] 같이 인덱싱을 해서 요소를 찾도록
-        document.getElementsByClassName('navbar-toggler')[0].addEventListener('click', function() {
-            document.getElementsByClassName('list-group')[0].classList.toggle('show')
-            // toggle 은 있으면 제거를 하고 없으면 붙여주는 용도이다.
+        document.querySelector('.list-group').classList.toggle('show')
+            // toggle 은 () 안에 있는 클래스가 존재하면 제거를 하고 없으면 붙여주는 용도이다.
             // classList에 show라는 요소가 있으면 제거, 없으면 붙이기.
         })
     </script>
