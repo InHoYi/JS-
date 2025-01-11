@@ -12,9 +12,18 @@
     <link rel = "stylesheet" href = "main.css">
     <!-- 파일 순서를 bootstrap -> (직접 만든) css 로 해야지 bootstrap이 적용이 된 후에 main.css가 적용이 됨. -->
     <!-- main.css 가 라이브러리 기능에 덧붙이기 하는 셈이라서 이 방법 웬만하면 지켜야할듯 -->
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
   </head>
 
   <body>
+
+    <div class="black-bg">
+      <div class="white-bg">
+        <h4>로그인하세요</h4>
+        <button class="btn btn-danger" id="close">닫기</button>
+      </div>
+    </div> 
 
     <nav class="navbar navbar-light bg-light">
         <div class="container-fluid">
@@ -33,19 +42,34 @@
         <li class="list-group-item">And a fifth one</li>
     </ul>
 
+    <button id = 'loginBtn'> 로그인 </button>
+
     <script>
+
+
+      $('#loginBtn').on('click', function(){
+        $('.black-bg').addClass('show-modal');
+      })
+
+      $('#close').on('click', function(){
+        $('.black-bg').removeClass('show-modal');
+      })
+
 
       document.querySelector('.list-group')
       // querySelector 는 무조건 맨 위에 있는 것만 가지고 오고, querySelectorAll 을 쓰면 해당하는 모든 클래스/아이디를 리스트 형태로 반환해준다.
       // .list-group 으로 해야지 클래스가 선택되고, . 대신 # 을 붙이면 id 를 고를 수 있다.
 
-      document.querySelector('.navbar-toggler').addEventListener('click', function() {
+      $('.navbar-toggler').on('click', function() {
+        // jQuery 문법을 쓰면 document.querySelector 대신 그냥 $ 하나만 쓰면 됨. addEventListener 도 on 만 쓰면 끝.
         // 클래스는 요소가 상당히 많기 때문에 반드시 [0] 같이 인덱싱을 해서 요소를 찾도록
-        document.querySelector('.list-group').classList.toggle('show')
+        document.querySelectorAll('.list-group')[0].classList.toggle('show')
             // toggle 은 () 안에 있는 클래스가 존재하면 제거를 하고 없으면 붙여주는 용도이다.
             // classList에 show라는 요소가 있으면 제거, 없으면 붙이기.
         })
     </script>
+
+    
 
     <script 
     src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
