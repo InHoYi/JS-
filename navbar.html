@@ -24,7 +24,7 @@
 
         <form action="success.html">
           <div class="my-3">
-            <input type="text" class="form-control">
+            <input type="text" class="form-control" id = "email">
            </div>
            <div class="my-3">
              <input type="password" class="form-control">
@@ -37,7 +37,8 @@
 
     <nav class="navbar navbar-light bg-light">
         <div class="container-fluid">
-          <span class="navbar-brand">Navbar</span>
+          <span class="navbar-brand">JSShop</span>
+          <span class="badge bg-dark" id = "darkButton">Dark 🔄</span>
           <button class="navbar-toggler" id = "navbarBtn" type="button">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -60,6 +61,31 @@
     </div>
 
     <script>
+      
+      // var count = 0;
+      // $('.badge').on('click', function() {
+      //   count++;
+      //   if (count % 2 == 0) {
+      //     $('.badge').css('color', 'white');
+      //   }
+      //   else { $('.badge').css('color', 'black'); }
+      // })
+
+      $('#darkButton').on('click', function() {
+        if ($('#darkButton').css('color') == 'rgb(255, 255, 255)') {
+          $('#darkButton').css('color', 'rgb(0, 0, 0)');
+        }
+        else if ($('#darkButton').css('color') == 'rgb(0, 0, 0)') {
+          $('#darkButton').css('color', 'rgb(255, 255, 255)');
+        }
+      })
+
+
+      document.getElementById('email').addEventListener('input', function() {
+        console.log('Wassup');
+        // addEventListener 에 input을 넣으면 , input이 변할 때 이벤트가 발생한다.
+
+      })
       
       $('#send').on('click', function(){
         if (($(".form-control")[0].value == "") || 
