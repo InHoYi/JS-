@@ -61,7 +61,7 @@
     </div>
 
     <script>
-      
+
       // var count = 0;
       // $('.badge').on('click', function() {
       //   count++;
@@ -73,9 +73,11 @@
 
       $('#darkButton').on('click', function() {
         if ($('#darkButton').css('color') == 'rgb(255, 255, 255)') {
+          $('#darkButton').html('dark 🔄');
           $('#darkButton').css('color', 'rgb(0, 0, 0)');
         }
         else if ($('#darkButton').css('color') == 'rgb(0, 0, 0)') {
+          $('#darkButton').html('white 🔄');
           $('#darkButton').css('color', 'rgb(255, 255, 255)');
         }
       })
