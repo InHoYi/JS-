@@ -66,10 +66,22 @@
 
     <script>
 
-      setTimeout(function() {
-        $('.alert').hide();
-      }, 1000) 
-      // 1000ms = 1초
+      function hideAlert() {
+        var time = 5;
+        setInterval(function() {
+          if (time == 0) {
+            $('.alert').hide();
+            return false;
+          }
+          else {
+            $('.alert').html(time + '초 이내 구매시 사은품 증정!');
+            time -= 1;
+          }
+        }, 1000) 
+        // 1000ms = 1초
+      }
+
+      hideAlert();
 
       // var count = 0;
       // $('.badge').on('click', function() {
