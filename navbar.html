@@ -60,7 +60,16 @@
       <button id = "loginBtn" class = "btn btn-danger"> 로그인 </button>
     </div>
 
+    <div class = "alert alert-danger">
+      5초 이내 구매시 사은품 증정!
+    </div>
+
     <script>
+
+      setTimeout(function() {
+        $('.alert').hide();
+      }, 1000) 
+      // 1000ms = 1초
 
       // var count = 0;
       // $('.badge').on('click', function() {
