@@ -96,6 +96,15 @@
 
     <script>
 
+      // 모달 창에서 검은 배경 누르면 모달 창 닫히게 만들기
+      $('.black-bg').eq(0).on('click', function(e) {
+        console.log(e.target); // e.target 유저가 실제로 누른 것.
+        console.log(document.querySelector('.black-bg'));
+        if (e.target == document.querySelector('.black-bg')) {
+          $('.black-bg').removeClass('show-modal');
+        } 
+      })
+
       $('.lorem').on('scroll', function() { 
         var height = document.querySelector('.lorem').scrollHeight;
         // scrollHeight는 전체 컨텐츠의 길이를 의미함.
