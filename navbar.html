@@ -124,8 +124,12 @@
           return false;
           // e.preventDefault();
         }
-        else if ( $(".form-control")[1].value.length < 6 ) {
+        if ( $(".form-control")[1].value.length < 6 ) {
           alert("비번 좀 더 길게");
+          return false;
+        }
+        if (!/[A-Z]/.test($(".form-control")[1].value) ) {
+          alert("비번에 영어 대문자 하나 이상 포함");
           return false;
         }
       })
