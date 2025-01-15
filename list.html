@@ -17,46 +17,61 @@
   </head>
 
   <body>
+
+    <div class="container">
+        <div class="row">
       
-    <div class="card-group container">
-        <div class="card">
-        <img src = "https://placehold.co/600"/>
-        <div class="card-body">
-            <h5>Card title</h5>
-            <p>가격 : 70000</p>
-            <button class="btn btn-danger">주문하기</button>
-        </div>
-        </div>
-        <div class="card">
-        <img src = "https://placehold.co/600"/>
-        <div class="card-body">
-            <h5>Card title</h5>
-            <p>가격 : 70000</p>
-            <button class="btn btn-danger">주문하기</button>
-        </div>
-        </div>
-        <div class="card">
-        <img src = "https://placehold.co/600"/>
-        <div class="card-body">
-            <h5>Card title</h5>
-            <p>가격 : 70000</p>
-            <button class="btn btn-danger">주문하기</button>
-        </div>
         </div>
     </div>
 
+    <div class = "container">
+      <button class = "btn btn-danger"> 더보기</button>
+    </div>
+
     <script>
-        var products = [
-          { id : 0, price : 70000, title : 'Blossom Dress' },
-          { id : 1, price : 50000, title : 'Springfield Shirt' },
-          { id : 2, price : 60000, title : 'Black Monastery' }
-        ];
 
-        for (let i = 0; i < 3; i++){
-            $('.card-body h5').eq(i).html(products[i].title);
-            $('.card-body p').eq(i).html(products[i].price);
+      var products = [
+        {id : 0, price : 70000, title : 'Blosson Dress'},
+        {id : 1, price : 50000, title : 'SpringField Shirt'},
+        {id : 2, price : 60000, title : 'Black Monastery'},
+      ];
+
+      var newCard = 
+        `<div class="col-sm-4">
+        <img src="https://placehold.co/600" class="w-100">
+        <h5>Card title</h5>
+        <p>가격 : 넣어주이소~ </p>
+        </div>`;
+        
+      products.forEach(function(e, i){
+        $('.row').append(newCard);
+        $('.row h5').eq(i).html(e.title);
+        $('.row p').eq(i).html(`가격 : ${e.price}`);
+      })
+
+      var dataList = ['https://codingapple1.github.io/js/more1.json', 'https://codingapple1.github.io/js/more2.json']; 
+
+      clickNum = 0;
+
+      $('.container').on('click', function() {
+        if (clickNum < 2){ 
+          $.get(dataList[clickNum]).done(function(data){
+            console.log(data);
+            data.forEach(function(e, i){
+              $('.row').append(newCard);
+              $('.row h5').eq(i + (3 * clickNum)).html(e.title);
+              $('.row p').eq(i+(3 * clickNum)).html(`가격 : ${e.price}`);
+            })
+          }).fail(function() {
+            console.log('Fail');
+          })
         }
-
+        else{
+          alert('맨 아래입니다.');
+        }
+        clickNum++;
+      }) 
+      
     </script>
 
     <script 
