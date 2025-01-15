@@ -12,56 +12,72 @@
     <link rel = "stylesheet" href = "main.css">
     <!-- 파일 순서를 bootstrap -> (직접 만든) css 로 해야지 bootstrap이 적용이 된 후에 main.css가 적용이 됨. -->
     <!-- main.css 가 라이브러리 기능에 덧붙이기 하는 셈이라서 이 방법 웬만하면 지켜야할듯 -->
-
+    
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
   </head>
-
+  
   <body>
-
+    
     <div class="container">
-        <div class="row">
-      
-        </div>
+      <div class="row">
+        
+      </div>
     </div>
-
+    
+    <div class = "container my-3">
+      <button class = "btn btn-danger" id = "price"> 가격순정렬 </button>
+    </div>
+    
     <div class = "container">
-      <button class = "btn btn-danger"> 더보기</button>
+      <button class = "btn btn-danger" id = "more"> 더보기 </button>
     </div>
-
+    
     <script>
-
+      
       var products = [
         {id : 0, price : 70000, title : 'Blosson Dress'},
         {id : 1, price : 50000, title : 'SpringField Shirt'},
         {id : 2, price : 60000, title : 'Black Monastery'},
       ];
 
+      var dataList = ['https://codingapple1.github.io/js/more1.json', 'https://codingapple1.github.io/js/more2.json']; 
+
       var newCard = 
-        `<div class="col-sm-4">
+      `<div class="col-sm-4">
         <img src="https://placehold.co/600" class="w-100">
         <h5>Card title</h5>
         <p>가격 : 넣어주이소~ </p>
         </div>`;
-        
-      products.forEach(function(e, i){
-        $('.row').append(newCard);
-        $('.row h5').eq(i).html(e.title);
-        $('.row p').eq(i).html(`가격 : ${e.price}`);
+
+      function addCard(productList) {
+        $('.row').html('');
+        productList.forEach(function(e, i){
+          $('.row').append(newCard);
+          $('.row h5').eq(i).html(e.title);
+          $('.row p').eq(i).html(`가격 : ${e.price}`);
+        })
+      } 
+      
+      addCard(products);
+
+      $('#price').on('click', function() {
+        $('.row').html('');
+        products.sort(function (a, b) {
+            if (a.price < b.price) { return -1; } 
+            return 1;
+          })          
+          addCard(products);
       })
 
-      var dataList = ['https://codingapple1.github.io/js/more1.json', 'https://codingapple1.github.io/js/more2.json']; 
-
       clickNum = 0;
-
-      $('.container').on('click', function() {
-        if (clickNum < 2){ 
+        // 물건 정보를 들고와서 다 같이 하나로 합친 다음에 정렬을 한 후 이 것을 다시 보여주도록
+      $('#more').on('click', function() {
+        if (clickNum < 2) { 
           $.get(dataList[clickNum]).done(function(data){
-            console.log(data);
-            data.forEach(function(e, i){
-              $('.row').append(newCard);
-              $('.row h5').eq(i + (3 * clickNum)).html(e.title);
-              $('.row p').eq(i+(3 * clickNum)).html(`가격 : ${e.price}`);
-            })
+            // console.log(data); 
+            products = products.concat(data);
+            console.log(products);
+            addCard(products);
           }).fail(function() {
             console.log('Fail');
           })
@@ -71,10 +87,11 @@
         }
         clickNum++;
       }) 
-      
-    </script>
+          
+          </script>
 
-    <script 
+
+<script 
     src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" 
     crossorigin="anonymous">
