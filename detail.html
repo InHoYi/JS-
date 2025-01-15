@@ -62,11 +62,64 @@
             <span class = 'car-price'> 가격 </span>
         </div>
     </div>
+
     <script>
         var car2 = {name : '소나타', price : [50000, 40000, 30000]};
         $('.car-title').html(`${car2.name}`);
         $('.car-price').html(`${car2.price[1]}`);
     </script>
+
+    <form class="container my-5 form-group">
+        <p>상품선택</p>
+        <select class="form-select mt-2">
+            <option>모자</option>
+            <option>셔츠</option>
+        </select>
+        <select class="form-select mt-2 form-hide" id = "additionalOption">
+            <option>95</option>
+            <option>100</option>
+        </select>
+    </form>
+    <script>
+
+        // 옵션에 바지 추가하기
+        var newOption = document.createElement('option');
+        newOption.innerHTML = '바지';
+        document.querySelectorAll('.form-select')[0].appendChild(newOption);
+
+        var pants = [28, 30, 32, 34];
+        var shirts = [95, 100, 105];
+
+        // $('.form-select').eq(0).val();
+        $('.form-select').eq(0).on('input', function() {
+            if ($('.form-select').eq(0).val() == '셔츠') {
+                $('.form-select').eq(1).removeClass('form-hide');
+                $('.form-select').eq(1).html('');
+                shirts.forEach(function(e) {
+                    $('.form-select').eq(1).append(`<option>${e}</option>`);
+                })
+                // $('#additionalOption option').eq(0).html('95');
+                // $('#additionalOption option').eq(1).html('100');
+            }
+
+            else if ($('.form-select').eq(0).val() == '바지') {
+                $('.form-select').eq(1).removeClass('form-hide');
+
+                // 하드코딩하는 경우
+                // $('#additionalOption option').eq(0).html('28');
+                // $('#additionalOption option').eq(1).html('30');
+
+                $('.form-select').eq(1).html('');
+                pants.forEach(function(e) {
+                    $('.form-select').eq(1).append(`<option>${e}</option>`);
+                })
+            }
+            else {
+                $('.form-select').eq(1).addClass('form-hide');
+            }
+        })
+    </script>
+
 
     <div class="container mt-5">
         <ul class="list">
