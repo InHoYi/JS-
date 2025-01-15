@@ -57,6 +57,18 @@
     </style>
 
     <div class="container mt-5">
+        <div class = "card p-3">
+            <span class = 'car-title'> 상품명 </span>
+            <span class = 'car-price'> 가격 </span>
+        </div>
+    </div>
+    <script>
+        var car2 = {name : '소나타', price : [50000, 40000, 30000]};
+        $('.car-title').html(`${car2.name}`);
+        $('.car-price').html(`${car2.price[1]}`);
+    </script>
+
+    <div class="container mt-5">
         <ul class="list">
           <li class="tab-button" data-id = "0">Products</li>
           <!-- data-<이름> = <데이터>로 넣으면 html 태그에 데이터를 저장할 수 있음. -->
