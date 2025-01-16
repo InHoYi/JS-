@@ -25,11 +25,20 @@
     </div>
     
     <div class = "container my-3">
-      <button class = "btn btn-danger" id = "price"> 가격순정렬 </button>
+      <button class = "btn btn-danger" id = "sortbyPrice"> 가격순정렬 </button>
     </div>
     
-    <div class = "container">
+    <div class = "container  my-3">
       <button class = "btn btn-danger" id = "more"> 더보기 </button>
+    </div>
+
+    <div class = "container  my-3">
+      <button class = "btn btn-danger" id = "sortbyName"> 가나다... </button>
+    </div>
+
+    <div class = "container  my-3">
+      <input class = 'searchPrice'></input>
+      <button class = "btn btn-danger" id = "underSix"> (원) 이하 검색 </button>
     </div>
     
     <script>
@@ -45,10 +54,12 @@
       var newCard = 
       `<div class="col-sm-4">
         <img src="https://placehold.co/600" class="w-100">
-        <h5>Card title</h5>
+        <h5 class = 'card-title'>Card title</h5>
         <p>가격 : 넣어주이소~ </p>
-        </div>`;
-
+        <button class = 'buy'> 구매 </button>
+      </div>`;
+      
+      // 카드 추가 기능
       function addCard(productList) {
         $('.row').html('');
         productList.forEach(function(e, i){
@@ -60,7 +71,7 @@
       
       addCard(products);
 
-      $('#price').on('click', function() {
+      $('#sortbyPrice').on('click', function() {
         $('.row').html('');
         products.sort(function (a, b) {
             if (a.price < b.price) { return -1; } 
@@ -69,13 +80,15 @@
           addCard(products);
       })
 
+      // 물건 정보를 들고와서 다 같이 하나로 합친 다음에 정렬을 한 후 이 것을 다시 보여주도록
       clickNum = 0;
-        // 물건 정보를 들고와서 다 같이 하나로 합친 다음에 정렬을 한 후 이 것을 다시 보여주도록
       $('#more').on('click', function() {
         if (clickNum < 2) { 
           $.get(dataList[clickNum]).done(function(data){
-            // console.log(data); 
+
+            // 데이터 추가
             products = products.concat(data);
+
             console.log(products);
             addCard(products);
           }).fail(function() {
@@ -87,8 +100,45 @@
         }
         clickNum++;
       }) 
+
+      // 가 나 다 순으로 정렬
+      $('#sortbyName').on('click', function() {
+
+        products.sort(function(a,b){
+          if (a.title < b.title) { return -1; } 
+          return 1;
+        })
+        addCard(products);
+      })
+      
+      $('#underSix').on('click', function() {
+        
+        var filtered = products.filter(function(a) {
+          return a.price < 60000;
+        })
+
+        addCard(filtered);
+      })
+
+      // localStorage에 데이터 저장하기
+      $('.row').on('click', '.buy', function(e) {  // 이벤트 위임 사용
+        let clickedCard = $(e.target).closest('.col-sm-4'); // 클릭된 버튼의 조상 .col-sm-4 찾기
+        let title = clickedCard.find('.card-title').html();
+
+        const cart = localStorage.getItem('cart');
+
+        if (cart === null) {
+          localStorage.setItem('cart', JSON.stringify([title]));
+        } else {
+          loadedList = localStorage.getItem('cart');
+          localStorageCartList = JSON.parse(loadedList);
+          localStorageCartList.push(title);
+          toAddList = JSON.stringify(localStorageCartList);
+          localStorage.setItem('cart', toAddList);
+        }
+      });
           
-          </script>
+    </script>
 
 
 <script 
